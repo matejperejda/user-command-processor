@@ -29,9 +29,6 @@ dependencies {
 
     testImplementation "org.junit.jupiter:junit-jupiter:${jupiterVersion}"
     testImplementation "org.assertj:assertj-core:${assertjVersion}"
-
-    testImplementation 'org.mockito:mockito-core:5.5.0'
-    testImplementation 'org.mockito:mockito-junit-jupiter:5.5.0'
 }
 
 group = 'com.example.processor'
