@@ -1,0 +1,47 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    gradlePluginPortal()
+    mavenLocal()
+    mavenCentral()
+}
+
+ext {
+    h2DbVersion = '2.3.232'
+    hikariVersion = '6.1.0'
+    immutablesVersion = '2.10.1'
+    slf4jVersion = '2.0.16'
+    logbackVersion = '1.5.12'
+    assertjVersion = '3.26.3'
+    jupiterVersion = '5.11.3'
+}
+
+dependencies {
+    implementation("com.h2database:h2:$h2DbVersion")
+    implementation("com.zaxxer:HikariCP:$hikariVersion")
+    implementation("org.slf4j:slf4j-api:$slf4jVersion")
+    implementation("ch.qos.logback:logback-classic:$logbackVersion")
+
+    annotationProcessor("org.immutables:value:$immutablesVersion")
+    compileOnly("org.immutables:value-annotations:$immutablesVersion")
+
+    testImplementation "org.junit.jupiter:junit-jupiter:${jupiterVersion}"
+    testImplementation "org.assertj:assertj-core:${assertjVersion}"
+
+    testImplementation 'org.mockito:mockito-core:5.5.0'
+    testImplementation 'org.mockito:mockito-junit-jupiter:5.5.0'
+}
+
+group = 'com.example.processor'
+version = '0.0.1-SNAPSHOT'
+
+test {
+    useJUnitPlatform()
+}
+
+tasks.register('run', JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'com.example.processor.app.Application'
+}
